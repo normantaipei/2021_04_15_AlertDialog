@@ -1,7 +1,10 @@
 package com.app.myapp;
 
+import android.app.AlertDialog;
+import android.content.DialogInterface;
 import android.support.annotation.NonNull;
 import android.support.v7.widget.RecyclerView;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -36,6 +39,24 @@ public class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerViewAdapte
         @Override
         public void onClick(View view) {
             // 按下後執行的程式碼。
+            String[] arr={"1","2","3"};
+            new AlertDialog.Builder(view.getContext())
+                    .setTitle("xxxxx")
+                    .setItems(arr, new DialogInterface.OnClickListener() {
+                        @Override
+                        public void onClick(DialogInterface dialogInterface, int i) {
+                            Log.d("i",""+i);
+                            //Log.d()
+                        }
+                    })
+                    .setPositiveButton("Yes", new DialogInterface.OnClickListener() {
+                        @Override
+                        public void onClick(DialogInterface dialogInterface, int i) {
+                            Log.d("i2",""+i);
+                            dialogInterface.cancel();
+                        }
+                    })
+                    .show();
             Toast.makeText(view.getContext(),
                     mListString.get(getAdapterPosition()), Toast.LENGTH_LONG)
                     .show();
